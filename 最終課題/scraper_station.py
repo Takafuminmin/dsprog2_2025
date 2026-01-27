@@ -4,7 +4,8 @@ import time
 
 class KeioStationScraper:
     def __init__(self):
-        self.base_url = "（京王電鉄 駅一覧ページURL）"
+        self.base_url = "https://www.keio.co.jp/train/station/"
+
 
     def scrape(self):
         response = requests.get(self.base_url)

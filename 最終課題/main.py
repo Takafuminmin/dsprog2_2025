@@ -19,4 +19,5 @@ stations = station_scraper.scrape()
 for station in stations:
     minutes = time_scraper.get_time_to_shinjuku(station["station_name"])
     station["minutes"] = minutes
-    db.insert_station(station)
+    db.insert_station_with_time(station)
+
