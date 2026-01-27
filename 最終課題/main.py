@@ -1,6 +1,14 @@
+print("main.py start")
+
 from scraper_station import KeioStationScraper
+print("scraper_station OK")
+
 from scraper_time import TravelTimeScraper
+print("scraper_time OK")
+
 from database import Database
+print("database OK")
+
 
 station_scraper = KeioStationScraper()
 time_scraper = TravelTimeScraper()
