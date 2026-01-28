@@ -21,3 +21,6 @@ for station in stations:
     station["minutes"] = minutes
     db.insert_station_with_time(station)
 
+stations = station_scraper.scrape()
+print(stations[:5])
+print(len(stations))

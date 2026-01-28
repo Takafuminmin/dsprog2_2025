@@ -4,7 +4,7 @@ import time
 
 class TravelTimeScraper:
     def __init__(self):
-        self.base_url = "（Yahoo!路線情報URL）"
+        self.base_url = "https://transit.yahoo.co.jp/search/result"
 
     def get_time_to_shinjuku(self, station_name):
         params = {
