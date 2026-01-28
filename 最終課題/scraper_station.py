@@ -4,7 +4,7 @@ import time
 
 class KeioStationScraper:
     def __init__(self):
-        self.base_url = "（京王電鉄 駅一覧ページURL）"
+        self.base_url = "https://www.keio.co.jp/train/station/"
 
     def scrape(self):
         response = requests.get(self.base_url)
@@ -12,17 +12,19 @@ class KeioStationScraper:
 
         stations = []
 
-        for row in soup.select("駅情報の行セレクタ"):
-            station_name = row.select_one("駅名セレクタ").text.strip()
+        # 駅リンク（aタグ）を取得
+        for a in soup.select("a[href^='/train/station/']"):
+            station_name = a.text.strip()
 
-            # 特急停車の有無（アイコンや文字で判定）
-            is_limited_express = "特急" in row.text
+            # 空文字・重複除外
+            if not station_name or "駅" not in station_name:
+                continue
 
             stations.append({
-                "station_name": station_name,
-                "limited_express": is_limited_express
+                "station_name": station_name.replace("駅", ""),
+                "limited_express": None  # ← まずは仮
             })
 
-            time.sleep(1)
+            time.sleep(0.5)
 
         return stations
